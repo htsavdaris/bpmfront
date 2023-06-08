@@ -1,0 +1,6 @@
+#layout_01 {
+    display: flex;
+    place-items: left;
+    align-items: left;
+    justify-content: left;
+}
