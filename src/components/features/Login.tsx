@@ -13,8 +13,8 @@ import { ICredentials } from '../../models/credentials';
 
 
 class Credentials implements ICredentials {
-  login: string;
-  password: string;
+  login?: string;
+  password?: string;
 
   constructor(login: string, password: string) {
     this.login = login;
@@ -108,12 +108,8 @@ const Login = () =>  {
   const handleLogin = (event:any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      login: data.get("login"),
-      password: data.get("password"),
-    });
-    
-    const credentials = new Credentials(state.username, state.password);
+    const credentials = new Credentials( (data.get("login") || '' ).toString()  , (data.get("password") || '').toString());
+    console.log(credentials);
     LoginService.login(credentials);
   };
 
